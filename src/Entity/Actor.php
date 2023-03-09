@@ -7,26 +7,18 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=ActorRepository::class)
- */
+#[ORM\Entity(repositoryClass: ActorRepository::class)]
 class Actor
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Movie::class, mappedBy="actors")
-     */
+    #[ORM\ManyToMany(targetEntity: Movie::class, mappedBy: 'actors')]
     private $movies;
 
     public function __construct()

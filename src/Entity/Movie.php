@@ -8,50 +8,40 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass=MovieRepository::class)
- */
+#[ORM\Entity(repositoryClass: MovieRepository::class)]
 class Movie
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
-     * @Assert\Length(min=3)
-     */
+
+    #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Your title must be at least {{ limit }} characters long',
+        maxMessage: 'Your title cannot be longer than {{ limit }} characters',
+    )]
     private $title;
 
-    /**
-     * @ORM\Column(type="integer")
-     * @Assert\NotBlank
-     */
+    #[ORM\Column(type: 'integer')]
+    #[Assert\NotBlank]
     private $releaseYear;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\NotBlank]
     private $description;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $imagePath;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Actor::class, inversedBy="movies")
-     */
+    #[ORM\ManyToMany(targetEntity: Actor::class, inversedBy: 'movies')]
     private $actors;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Column(type: 'integer')]
     private $userId;
 
     public function __construct()
