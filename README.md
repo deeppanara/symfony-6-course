@@ -70,9 +70,9 @@ This will return back a message which says that your web server is indeed listen
 
 ```ruby 
 EXAMPLE
-[OK] Web server listening
-	The web server is using PHP FPM 8.0.6
-	http://127.0.0.1:8000
+ [OK] Web server listening
+ 	The Web server is using PHP CLI 8.1.16	
+	http://127.0.0.1:8000     
 ```
 
 127.0.0.1 is the standard ipv4 address for projects that run on localhost and :8000 is the first available port.
